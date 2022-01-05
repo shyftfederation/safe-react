@@ -6476,10 +6476,10 @@ bnb-javascript-sdk-nobroadcast@^2.16.14:
     uuid "^3.3.2"
     websocket-stream "^5.5.0"
 
-bnc-onboard@~1.35.3:
-  version "1.35.3"
-  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.35.3.tgz#f6e92e4dec1b35bbc808e57032d76c677d7f1ff8"
-  integrity sha512-9g3Lgfo5Q4VwKdoIDw4Zf+nVMCa16lReb0f+iSmH6CrdiDrN5rRTGMy8qEOxQ/vSNuyHMeL9lVARpLA4s7X5xQ==
+bnc-onboard@~1.37:
+  version "1.37.0"
+  resolved "https://registry.yarnpkg.com/bnc-onboard/-/bnc-onboard-1.37.0.tgz#837238933b7461d898bc8dfb3e56354004237b44"
+  integrity sha512-B1itICd54MUhbwTycRX03p5f2DgRmQmJ3TLbUugVfjEJW1hYdhZ3w2JWaiDiQrCPDdmu4qSook7RUghZrBi7Zg==
   dependencies:
     "@cvbb/eth-keyring" "^1.1.0"
     "@ensdomains/ensjs" "^2.0.1"
@@ -6510,7 +6510,7 @@ bnc-onboard@~1.35.3:
     hdkey "^2.0.1"
     regenerator-runtime "^0.13.7"
     trezor-connect "^8.1.9"
-    walletlink "^2.1.11"
+    walletlink "^2.2.6"
     web3-provider-engine "^15.0.4"
 
 bnc-sdk@^3.4.1:
@@ -6851,7 +6851,7 @@ buffer-xor@^1.0.3:
   resolved "https://registry.yarnpkg.com/buffer-xor/-/buffer-xor-1.0.3.tgz#26e61ed1422fb70dd42e6e36729ed51d855fe8d9"
   integrity sha1-JuYe0UIvtw3ULm42cp7VHYVf6Nk=
 
-buffer@6.0.3, buffer@^6.0.3:
+buffer@6.0.3:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/buffer/-/buffer-6.0.3.tgz#2ace578459cc8fbe2a70aaa8f52ee63b6a74c6c6"
   integrity sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==
@@ -21111,7 +21111,7 @@ util@^0.11.0:
   dependencies:
     inherits "2.0.3"
 
-util@^0.12.0, util@^0.12.4:
+util@^0.12.0:
   version "0.12.4"
   resolved "https://registry.yarnpkg.com/util/-/util-0.12.4.tgz#66121a31420df8f01ca0c464be15dfa1d1850253"
   integrity sha512-bxZ9qtSlGUWSOy9Qa9Xgk11kSslpuZwaxCg4sNIDj6FLucDab2JxnHwyNTCpHMtK1MjoQiWQ6DiUMZYbSrO+Sw==
@@ -21272,15 +21272,14 @@ walker@^1.0.7, walker@~1.0.5:
   dependencies:
     makeerror "1.0.12"
 
-walletlink@^2.1.11:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/walletlink/-/walletlink-2.2.6.tgz#cfea3ba94e5ea33e87b0a2f31151a77ee1a59d72"
-  integrity sha512-4TF1kkpo9aq1QlfKv6jTCEsV8Rc+1RIuXn2EtsTJt9/H02fG3oy7k49sqB4gXZ9CWN48yoXnmSwq1GdkvfYGjw==
+walletlink@^2.2.6:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/walletlink/-/walletlink-2.4.0.tgz#9cfc3d038b2c40b87433fb1719dec8551aef81c1"
+  integrity sha512-JAYRdbmqEqh+kTFlhEezyGwcn3e8WiDyORXWB8odnvP9+leKIsjO3RW8VoZKR86+m4TY9OsUMcx4w+B7mYxg6g==
   dependencies:
     "@metamask/safe-event-emitter" "2.0.0"
     bind-decorator "^1.0.11"
     bn.js "^5.1.1"
-    buffer "^6.0.3"
     clsx "^1.1.0"
     eth-block-tracker "4.4.3"
     eth-json-rpc-filters "4.2.2"
@@ -21291,7 +21290,6 @@ walletlink@^2.1.11:
     preact "^10.5.9"
     rxjs "^6.6.3"
     stream-browserify "^3.0.0"
-    util "^0.12.4"
 
 warning@^4.0.2, warning@^4.0.3:
   version "4.0.3"
