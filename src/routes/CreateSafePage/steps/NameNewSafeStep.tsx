@@ -4,7 +4,7 @@ import { useForm } from 'react-final-form'
 import styled from 'styled-components'
 
 import Block from 'src/components/layout/Block'
-import { lg, secondary } from 'src/theme/variables'
+import { lg } from 'src/theme/variables'
 import Col from 'src/components/layout/Col'
 import Paragraph from 'src/components/layout/Paragraph'
 import Field from 'src/components/forms/Field'
@@ -55,16 +55,8 @@ function NameNewSafeStep(): ReactElement {
       </FieldContainer>
       <Block margin="lg">
         <Paragraph color="primary" noMargin size="lg">
-          By continuing you consent with the{' '}
-          <Link href="https://gnosis-safe.io/terms" rel="noopener noreferrer" target="_blank">
-            terms of use
-          </Link>{' '}
-          and{' '}
-          <Link href="https://gnosis-safe.io/privacy" rel="noopener noreferrer" target="_blank">
-            privacy policy
-          </Link>
-          . Most importantly, you confirm that your funds are held securely in the Gnosis Safe, a smart contract on the
-          Ethereum blockchain. These funds cannot be accessed by Gnosis at any point.
+          By continuing, you confirm that your funds are held securely in the Shyft Safe, a smart contract on the Shyft
+          blockchain. These funds cannot be accessed by Shyft at any point.
         </Paragraph>
       </Block>
     </BlockWithPadding>
@@ -81,8 +73,4 @@ const FieldContainer = styled(Block)`
   display: flex;
   max-width: 480px;
   margin-top: 12px;
-`
-
-const Link = styled.a`
-  color: ${secondary};
 `
