@@ -7,20 +7,18 @@ import App from 'src/components/App'
 import GlobalErrorBoundary from 'src/components/GlobalErrorBoundary'
 import AppRoutes from 'src/routes'
 import { store } from 'src/store'
-import { history, WELCOME_ROUTE } from 'src/routes/routes'
+import { history } from 'src/routes/routes'
 import theme from 'src/theme/mui'
 import { wrapInSuspense } from 'src/utils/wrapInSuspense'
 import Providers from '../Providers'
 import './index.module.scss'
 import './OnboardCustom.module.scss'
 import './KeystoneCustom.module.scss'
-import StoreMigrator from 'src/components/StoreMigrator'
 import LegacyRouteRedirection from './LegacyRouteRedirection'
 import { logError, Errors, CodedException } from 'src/logic/exceptions/CodedException'
 import { loadChains } from 'src/config/cache/chains'
-import { isValidChainId, _getChainId } from 'src/config'
-import { DEFAULT_CHAIN_ID } from 'src/utils/constants'
 import { setChainId } from 'src/logic/config/utils'
+import { _getChainId } from 'src/config'
 
 // Preloader is rendered outside of '#root' and acts as a loading spinner
 // for the app and then chains loading
@@ -36,10 +34,6 @@ const RootConsumer = (): React.ReactElement | null => {
     const initChains = async () => {
       try {
         await loadChains()
-        if (!isValidChainId(_getChainId())) {
-          setChainId(DEFAULT_CHAIN_ID)
-          history.push(WELCOME_ROUTE)
-        }
         setHasChains(true)
       } catch (err) {
         logError(Errors._904, err.message)
@@ -47,6 +41,9 @@ const RootConsumer = (): React.ReactElement | null => {
       }
     }
     initChains()
+
+    // Set store chainId and init contracts/session
+    setChainId(_getChainId())
   }, [])
 
   // Chains failed to load
@@ -69,7 +66,6 @@ const RootConsumer = (): React.ReactElement | null => {
           <Loader size="md" />
         </LoadingContainer>,
       )}
-      <StoreMigrator />
     </App>
   )
 }
