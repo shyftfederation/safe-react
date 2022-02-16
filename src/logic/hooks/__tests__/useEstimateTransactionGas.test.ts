@@ -1,77 +1,9 @@
 import {
   checkIfTxIsApproveAndExecution,
   checkIfTxIsCreation,
-  checkIfTxIsExecution,
+  calculateTotalGasCost,
 } from 'src/logic/hooks/useEstimateTransactionGas'
 
-describe('checkIfTxIsExecution', () => {
-  const mockedEthAccount = '0x29B1b813b6e84654Ca698ef5d7808E154364900B'
-  it(`should return true if the safe threshold is 1`, () => {
-    // given
-    const threshold = 1
-    const preApprovingOwner = undefined
-    const transactionConfirmations = 0
-    const transactionType = ''
-
-    // when
-    const result = checkIfTxIsExecution(threshold, preApprovingOwner, transactionConfirmations, transactionType)
-
-    // then
-    expect(result).toBe(true)
-  })
-  it(`should return true if the safe threshold is reached for the transaction`, () => {
-    // given
-    const threshold = 3
-    const preApprovingOwner = mockedEthAccount
-    const transactionConfirmations = 3
-    const transactionType = ''
-
-    // when
-    const result = checkIfTxIsExecution(threshold, preApprovingOwner, transactionConfirmations, transactionType)
-
-    // then
-    expect(result).toBe(true)
-  })
-  it(`should return true if the transaction is spendingLimit`, () => {
-    // given
-    const threshold = 5
-    const preApprovingOwner = undefined
-    const transactionConfirmations = 0
-    const transactionType = 'spendingLimit'
-
-    // when
-    const result = checkIfTxIsExecution(threshold, preApprovingOwner, transactionConfirmations, transactionType)
-
-    // then
-    expect(result).toBe(true)
-  })
-  it(`should return true if the number of confirmations is one bellow the threshold but there is a preApprovingOwner`, () => {
-    // given
-    const threshold = 5
-    const preApprovingOwner = mockedEthAccount
-    const transactionConfirmations = 4
-    const transactionType = undefined
-
-    // when
-    const result = checkIfTxIsExecution(threshold, preApprovingOwner, transactionConfirmations, transactionType)
-
-    // then
-    expect(result).toBe(true)
-  })
-  it(`should return false if the number of confirmations is one bellow the threshold and there is no preApprovingOwner`, () => {
-    // given
-    const threshold = 5
-    const preApprovingOwner = undefined
-    const transactionConfirmations = 4
-    const transactionType = undefined
-
-    // when
-    const result = checkIfTxIsExecution(threshold, preApprovingOwner, transactionConfirmations, transactionType)
-
-    // then
-    expect(result).toBe(false)
-  })
-})
 describe('checkIfTxIsCreation', () => {
   it(`should return true if there are no confirmations for the transaction and the transaction is not spendingLimit`, () => {
     // given
@@ -187,5 +119,28 @@ describe('checkIfTxIsApproveAndExecution', () => {
 
     // then
     expect(result).toBe(false)
+  })
+})
+
+describe('calculateTotalGasCost', () => {
+  it('calculates total gas cost for pre-EIP-1559 txns', () => {
+    const [gasCost, gasCostFormatted] = calculateTotalGasCost('53160', '264000000000', '0', 18)
+
+    expect(gasCost).toBe('0.01403424')
+    expect(gasCostFormatted).toBe('0.01403')
+  })
+
+  it('calculates total gas cost for EIP-1559 txns', () => {
+    const [gasCost, gasCostFormatted] = calculateTotalGasCost('53160', '264000000000', '2500000000', 18)
+
+    expect(gasCost).toBe('0.01416714')
+    expect(gasCostFormatted).toBe('0.01417')
+  })
+
+  it('calculates total gas cost with a non-default max prio fee', () => {
+    const [gasCost, gasCostFormatted] = calculateTotalGasCost('53160', '264000000000', '1000000000000', 18)
+
+    expect(gasCost).toBe('0.06719424')
+    expect(gasCostFormatted).toBe('0.06719')
   })
 })

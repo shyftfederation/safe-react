@@ -8,7 +8,7 @@ For support requests, please open up a [bug issue](https://github.com/shyftfeder
 
 ## Transactions
 
-Please see the [transaction](docs/transaction.md) notes for more information about transaction details.
+Please see the [transaction](docs/transactions.md) notes for more information about transaction details.
 
 ## Deployed environments
 

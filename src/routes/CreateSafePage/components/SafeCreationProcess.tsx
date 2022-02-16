@@ -23,6 +23,7 @@ import {
   FIELD_CREATE_CUSTOM_SAFE_NAME,
   FIELD_NEW_SAFE_PROXY_SALT,
   FIELD_NEW_SAFE_GAS_PRICE,
+  FIELD_SAFE_OWNER_ENS_LIST,
 } from '../fields/createSafeFields'
 import { getSafeInfo } from 'src/logic/safe/utils/safeInformation'
 import { buildSafe } from 'src/logic/safe/store/actions/fetchSafe'
@@ -34,7 +35,7 @@ import Button from 'src/components/layout/Button'
 import { boldFont } from 'src/theme/variables'
 import { WELCOME_ROUTE, history, generateSafeRoute, SAFE_ROUTES } from 'src/routes/routes'
 import { getExplorerInfo, getShortName } from 'src/config'
-import { getGasParam } from 'src/logic/safe/transactions/gas'
+import { createSendParams } from 'src/logic/safe/transactions/gas'
 import { currentChainId } from 'src/logic/config/store/selectors'
 import PrefixedEthHashInfo from 'src/components/PrefixedEthHashInfo'
 
@@ -53,6 +54,28 @@ const goToWelcomePage = () => {
 }
 
 const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms))
+
+/**
+ * Parse MM error message, as a workaround for a bug in web3.js that doesn't do it correctly.
+ * It returns a formatting error like this:
+ *
+ * `[ethjs-query] while formatting outputs from RPC '{"value":{"code":-32000,"message":"intrinsic gas too low"}}'`
+ */
+const parseError = (err: Error): Error => {
+  const prefix = '[ethjs-query] while formatting outputs from RPC '
+
+  if (!err.message.startsWith(prefix)) return err
+
+  const json = err.message.split(prefix).pop() || ''
+  let actualMessage = ''
+  try {
+    actualMessage = JSON.parse(json.slice(1, -1)).value.message
+  } catch (e) {
+    actualMessage = ''
+  }
+
+  return actualMessage ? new Error(actualMessage) : err
+}
 
 function SafeCreationProcess(): ReactElement {
   const [safeCreationTxHash, setSafeCreationTxHash] = useState<string | undefined>()
@@ -88,12 +111,13 @@ function SafeCreationProcess(): ReactElement {
         const gasPrice = safeCreationFormValues[FIELD_NEW_SAFE_GAS_PRICE]
         const deploymentTx = getSafeDeploymentTransaction(ownerAddresses, confirmations, safeCreationSalt)
 
+        const sendParams = createSendParams(userAddressAccount, {
+          ethGasLimit: gasLimit.toString(),
+          ethGasPriceInGWei: gasPrice,
+        })
+
         deploymentTx
-          .send({
-            from: userAddressAccount,
-            gas: gasLimit,
-            [getGasParam()]: gasPrice,
-          })
+          .send(sendParams)
           .once('transactionHash', (txHash) => {
             saveToStorage(SAFE_PENDING_CREATION_STORAGE_KEY, {
               [FIELD_NEW_SAFE_CREATION_TX_HASH]: txHash,
@@ -107,7 +131,7 @@ function SafeCreationProcess(): ReactElement {
                 resolve(txReceipt)
               })
               .catch((error) => {
-                reject(error)
+                reject(parseError(error))
               })
           })
           .then((txReceipt) => {
@@ -115,7 +139,7 @@ function SafeCreationProcess(): ReactElement {
             resolve(txReceipt)
           })
           .catch((error) => {
-            reject(error)
+            reject(parseError(error))
           })
       }),
     )
@@ -150,13 +174,14 @@ function SafeCreationProcess(): ReactElement {
     const owners = createSafeFormValues[FIELD_SAFE_OWNERS_LIST]
 
     // we update the address book with the owners and the new safe
-    const ownersAddressBookEntry = owners.map(({ nameFieldName, addressFieldName }) =>
-      makeAddressBookEntry({
+    const ownersAddressBookEntry = owners.map(({ nameFieldName, addressFieldName }) => {
+      const ownerAddress = createSafeFormValues[addressFieldName]
+      return makeAddressBookEntry({
         address: createSafeFormValues[addressFieldName],
-        name: createSafeFormValues[nameFieldName],
+        name: createSafeFormValues[nameFieldName] || createSafeFormValues[FIELD_SAFE_OWNER_ENS_LIST][ownerAddress],
         chainId,
-      }),
-    )
+      })
+    })
     const safeAddressBookEntry = makeAddressBookEntry({ address: newSafeAddress, name: safeName, chainId })
     await dispatch(addressBookSafeLoad([...ownersAddressBookEntry, safeAddressBookEntry]))
 
