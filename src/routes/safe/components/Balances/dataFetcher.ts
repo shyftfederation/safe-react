@@ -5,12 +5,6 @@ import { Token } from 'src/logic/tokens/store/model/token'
 export const BALANCE_TABLE_ASSET_ID = 'asset'
 export const BALANCE_TABLE_BALANCE_ID = 'balance'
 
-const getTokenPriceInCurrency = (balance: string, currencySelected?: string): string => {
-  if (!currencySelected) {
-    return Number('').toFixed(2)
-  }
-  return `${formatAmountInUsFormat(Number(balance).toFixed(2))} ${currencySelected}`
-}
 
 export interface BalanceData {
   asset: { name: string; logoUri: string; address: string; symbol: string }
