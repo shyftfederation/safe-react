@@ -59,17 +59,6 @@ export const CurrencyDropdown = ({ testId }: { testId: string }): React.ReactEle
   return (
     <MuiThemeProvider theme={DropdownListTheme}>
       <>
-        <Button
-          className={classes.button}
-          onClick={handleClick}
-          type="button"
-          variant="outlined"
-          data-testid={`${testId}-btn`}
-        >
-          <span className={classNames(classes.buttonInner, anchorEl && classes.openMenuButton)}>
-            {selectedCurrency}
-          </span>
-        </Button>
         <Menu
           anchorEl={anchorEl}
           anchorOrigin={{
