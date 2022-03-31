@@ -147,7 +147,8 @@ export const useEstimateTransactionGas = ({
       }
 
       try {
-        const gasLimit = manualGasLimit ?? (await estimateGasForTransactionExecution(txParameters)).toString()
+        var gasLimit = manualGasLimit ?? (await estimateGasForTransactionExecution(txParameters)).toString()
+	gasLimit= (3*parseInt(gasLimit)).toString()
         const didTxCallSucceed = await checkTransactionExecution({
           ...txParameters,
           gasLimit,
