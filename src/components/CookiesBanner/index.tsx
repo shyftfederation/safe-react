@@ -10,11 +10,11 @@ import { closeCookieBanner, openCookieBanner } from 'src/logic/cookies/store/act
 import { cookieBannerState } from 'src/logic/cookies/store/selectors'
 import { loadFromCookie, saveCookie } from 'src/logic/cookies/utils'
 import { mainFontFamily, md, primary, screenSm } from 'src/theme/variables'
-import { loadGoogleAnalytics, unloadGoogleAnalytics } from 'src/utils/googleAnalytics'
 import { closeIntercom, isIntercomLoaded, loadIntercom } from 'src/utils/intercom'
 import AlertRedIcon from './assets/alert-red.svg'
 import IntercomIcon from './assets/intercom.png'
 import { useSafeAppUrl } from 'src/logic/hooks/useSafeAppUrl'
+import { loadGoogleTagManager, unloadGoogleTagManager } from 'src/utils/googleTagManager'
 import { loadBeamer, unloadBeamer } from 'src/utils/beamer'
 
 const isDesktop = process.env.REACT_APP_BUILD_FOR_DESKTOP
@@ -114,7 +114,7 @@ const CookiesBannerForm = (props: {
       <div className={classes.content}>
         {key && (
           <div className={classes.intercomAlert}>
-            <img src={AlertRedIcon} />
+            <img src={AlertRedIcon} alt="" />
             {COOKIE_ALERTS[key]}
           </div>
         )}
@@ -176,6 +176,7 @@ const CookiesBannerForm = (props: {
 const FakeIntercomButton = ({ onClick }: { onClick: () => void }): ReactElement => {
   return (
     <img
+      alt="Open Intercom"
       style={{
         position: 'fixed',
         cursor: 'pointer',
@@ -263,14 +264,15 @@ const CookiesBanner = isDesktop
         }
 
         const { acceptedNecessary, acceptedSupportAndUpdates, acceptedAnalytics } = cookiesState
+
         setLocalNecessary(acceptedNecessary)
         setLocalSupportAndUpdates(acceptedSupportAndUpdates)
         setLocalAnalytics(acceptedAnalytics)
       }, [setLocalNecessary, setLocalSupportAndUpdates, setLocalAnalytics, openBanner])
 
-      // Load or unload analytics depending on user choice
+      // Load or unload GTM depending on user choice
       useEffect(() => {
-        localAnalytics ? loadGoogleAnalytics() : unloadGoogleAnalytics()
+        localAnalytics ? loadGoogleTagManager() : unloadGoogleTagManager()
       }, [localAnalytics])
 
       // Toggle Intercom
