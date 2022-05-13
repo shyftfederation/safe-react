@@ -1,4 +1,5 @@
 import semverSatisfies from 'semver/functions/satisfies'
+import { ContractNetworksConfig } from '@gnosis.pm/safe-core-sdk'
 import Web3 from 'web3'
 import { Contract } from 'web3-eth-contract'
 import { provider as Provider } from 'web3-core'
@@ -170,12 +171,26 @@ export const getSafeSDK = async (signerAddress: string, safeAddress: string, saf
   if (semverSatisfies(safeVersion, '<1.3.0')) {
     isL1SafeMasterCopy = true
   } else {
-    isL1SafeMasterCopy = networkId === CHAIN_ID.ETHEREUM
+    isL1SafeMasterCopy = false
+  }
+
+  const contractNetworks: ContractNetworksConfig = {
+	  [7341]: {
+		  multiSendAddress: '0xA238CBeb142c10Ef7Ad8442C6D1f9E89e07e7761',
+		  safeMasterCopyAddress: '0x3E5c63644E683549055b9Be8653de26E0B4CD36E',
+		  safeProxyFactoryAddress: '0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2'
+	  }, 
+	  [11437]: {
+		  multiSendAddress: '0xA238CBeb142c10Ef7Ad8442C6D1f9E89e07e7761',
+		  safeMasterCopyAddress: '0x3E5c63644E683549055b9Be8653de26E0B4CD36E',
+		  safeProxyFactoryAddress: '0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2'
+	  }
   }
 
   return await Safe.create({
     ethAdapter,
     safeAddress,
     isL1SafeMasterCopy,
+    contractNetworks
   })
 }
