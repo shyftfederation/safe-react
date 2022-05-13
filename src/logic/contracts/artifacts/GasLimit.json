@@ -1,0 +1,430 @@
+{
+  "contractName": "GasLimit",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "blockGasLimit",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function",
+      "constant": true
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.1+commit.f4a555be\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"blockGasLimit\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/GasLimit.sol\":\"GasLimit\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/GasLimit.sol\":{\"keccak256\":\"0x0c52b4c0c6206e9c59f054d68d5e77844eecc00b621996a6f863d644239baaf6\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4fe56f8306b877ff32005160df48780c50de9aff63ac2569cae05ebb40e5addc\",\"dweb:/ipfs/QmSkrmWfdv4NJJMgzLwFZtr9nwhE2WqfrdCkkkpXjHANVp\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060908061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80637877a79714602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b6000806302625a009050809150509056fea26469706673582212209977df433c2ecb2b89ee77f918adbd8eba0b76fc79847a3392ab0264aedda32264736f6c63430007010033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80637877a79714602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b6000806302625a009050809150509056fea26469706673582212209977df433c2ecb2b89ee77f918adbd8eba0b76fc79847a3392ab0264aedda32264736f6c63430007010033",
+  "immutableReferences": {},
+  "sourceMap": "58:147:0:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "58:147:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;81:122;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;127:7;144:16;163:9;144:28;;188:8;181:15;;;81:122;:::o",
+  "source": "pragma solidity ^0.7.1;\n\n// SPDX-License-Identifier: MIT\n\ncontract GasLimit{\n    function blockGasLimit() public pure returns (uint256){\n       uint256 gasLimit = 0x2625A00;\n       return gasLimit;\n    }\n}\n",
+  "sourcePath": "/opt/shyft_mainnet/testnet/contracts/GasLimit.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/GasLimit.sol",
+    "exportedSymbols": {
+      "GasLimit": [
+        14
+      ]
+    },
+    "id": 15,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".1"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 14,
+        "linearizedBaseContracts": [
+          14
+        ],
+        "name": "GasLimit",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 12,
+              "nodeType": "Block",
+              "src": "135:68:0",
+              "statements": [
+                {
+                  "assignments": [
+                    7
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 7,
+                      "mutability": "mutable",
+                      "name": "gasLimit",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 12,
+                      "src": "144:16:0",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 6,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "144:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 9,
+                  "initialValue": {
+                    "hexValue": "307832363235413030",
+                    "id": 8,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "number",
+                    "lValueRequested": false,
+                    "nodeType": "Literal",
+                    "src": "163:9:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_rational_40000000_by_1",
+                      "typeString": "int_const 40000000"
+                    },
+                    "value": "0x2625A00"
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "144:28:0"
+                },
+                {
+                  "expression": {
+                    "id": 10,
+                    "name": "gasLimit",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 7,
+                    "src": "188:8:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 5,
+                  "id": 11,
+                  "nodeType": "Return",
+                  "src": "181:15:0"
+                }
+              ]
+            },
+            "functionSelector": "7877a797",
+            "id": 13,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "blockGasLimit",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 2,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "103:2:0"
+            },
+            "returnParameters": {
+              "id": 5,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 13,
+                  "src": "127:7:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "127:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "126:9:0"
+            },
+            "scope": 14,
+            "src": "81:122:0",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 15,
+        "src": "58:147:0"
+      }
+    ],
+    "src": "0:206:0"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/GasLimit.sol",
+      "exportedSymbols": {
+        "GasLimit": [
+          14
+        ]
+      },
+      "license": "MIT"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.7",
+            ".1"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            14
+          ],
+          "name": "GasLimit",
+          "scope": 15
+        },
+        "children": [
+          {
+            "attributes": {
+              "functionSelector": "7877a797",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "blockGasLimit",
+              "scope": 14,
+              "stateMutability": "pure",
+              "virtual": false,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 2,
+                "name": "ParameterList",
+                "src": "103:2:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "scope": 13,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 3,
+                        "name": "ElementaryTypeName",
+                        "src": "127:7:0"
+                      }
+                    ],
+                    "id": 4,
+                    "name": "VariableDeclaration",
+                    "src": "127:7:0"
+                  }
+                ],
+                "id": 5,
+                "name": "ParameterList",
+                "src": "126:9:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        7
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "gasLimit",
+                          "scope": 12,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint256",
+                              "type": "uint256"
+                            },
+                            "id": 6,
+                            "name": "ElementaryTypeName",
+                            "src": "144:7:0"
+                          }
+                        ],
+                        "id": 7,
+                        "name": "VariableDeclaration",
+                        "src": "144:16:0"
+                      },
+                      {
+                        "attributes": {
+                          "hexvalue": "307832363235413030",
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "token": "number",
+                          "type": "int_const 40000000",
+                          "value": "0x2625A00"
+                        },
+                        "id": 8,
+                        "name": "Literal",
+                        "src": "163:9:0"
+                      }
+                    ],
+                    "id": 9,
+                    "name": "VariableDeclarationStatement",
+                    "src": "144:28:0"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 5
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 7,
+                          "type": "uint256",
+                          "value": "gasLimit"
+                        },
+                        "id": 10,
+                        "name": "Identifier",
+                        "src": "188:8:0"
+                      }
+                    ],
+                    "id": 11,
+                    "name": "Return",
+                    "src": "181:15:0"
+                  }
+                ],
+                "id": 12,
+                "name": "Block",
+                "src": "135:68:0"
+              }
+            ],
+            "id": 13,
+            "name": "FunctionDefinition",
+            "src": "81:122:0"
+          }
+        ],
+        "id": 14,
+        "name": "ContractDefinition",
+        "src": "58:147:0"
+      }
+    ],
+    "id": 15,
+    "name": "SourceUnit",
+    "src": "0:206:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.1+commit.f4a555be.Emscripten.clang"
+  },
+  "networks": {
+    "7341": {
+      "events": {},
+      "links": {},
+      "address": "0xd57898d526FFd88fcAae3B8A15143b6D67650a9F",
+      "transactionHash": "0xe299a74878f7305c57816c782fc14a384f3b70728095068b3a2563313276082d"
+    },
+    "11437": {
+      "events": {},
+      "links": {},
+      "address": "0xE879AcA16fb8704AE968D8ef52B9698Ad38365bE",
+      "transactionHash": "0x90d96ef33e6ca6b629b8a9d82b4907ba015ed29977e0ebf454cb0aa0995453e3"
+    }
+  },
+  "schemaVersion": "3.4.6",
+  "updatedAt": "2022-03-23T02:22:10.840Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
