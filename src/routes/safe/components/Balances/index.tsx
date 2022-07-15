@@ -7,7 +7,6 @@ import Col from 'src/components/layout/Col'
 import Modal from 'src/components/Modal'
 import ReceiveModal from 'src/components/App/ReceiveModal'
 import SendModal from 'src/routes/safe/components/Balances/SendModal'
-import { CurrencyDropdown } from 'src/routes/safe/components/CurrencyDropdown'
 import { currentSafeWithNames } from 'src/logic/safe/store/selectors'
 import { wrapInSuspense } from 'src/utils/wrapInSuspense'
 import { generatePrefixedAddressRoutes, SAFE_ROUTES, SAFE_SUBSECTION_ROUTE } from 'src/routes/routes'
@@ -66,7 +65,6 @@ const Balances = (): ReactElement => {
         </Col>
 
         <Col end="sm" sm={6} xs={12}>
-          {balancesSection === SECTION_NAME.coins && <CurrencyDropdown testId={'balances-currency-dropdown'} />}
         </Col>
       </Menu>
 
