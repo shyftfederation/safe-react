@@ -115,8 +115,7 @@ const PairingDetails = ({ vertical = false }: PairingDetailsProps): ReactElement
       )}
     </StyledContainer>
   )
-  rc = ()
-  return rc
+  return (<></>)
 }
 
 export default PairingDetails
