@@ -1,10 +1,11 @@
 # Shyft Safe
 
+# <div align="center">‼️ This repository is deprecated ‼️</div>
+
+<div align="center"> Please use <a href="https://github.com/safe-global/web-core">safe-global/web-core</a> instead </div>
+
+
 A platform to store digital assets on Shyft. Forked from Gnosis Safe (with thanks) [gnosis-safe.io](https://gnosis-safe.io/)
-
-For technical information please refer to the [Gnosis Developer Portal](https://docs.gnosis.io/safe/).
-
-For support requests, please open up a [bug issue](https://github.com/shyftfederation/safe-react/issues/new).
 
 ## Transactions
 
@@ -12,8 +13,15 @@ Please see the [transaction](docs/transactions.md) notes for more information ab
 
 ## Deployed environments
 
-- (eventually) Shyft Mainnet: https://safe.shyft.network/
-- Shyft Testnet: https://safe.testnet.shyft.network/
+- Shyft Mainnet: https://safe.shyft.network/
+
+## Related repos
+
+- [safe-react-e2e-tests](https://github.com/safe-global/safe-react-e2e-tests)
+- [safe-react-gateway-sdk](https://github.com/safe-global/safe-react-gateway-sdk)
+- [safe-react-components](https://github.com/safe-global/safe-react-components)
+- [safe-react](https://github.com/safe-global/safe-react) upstream
+
 
 ## Getting Started
 
@@ -89,6 +97,14 @@ ESLint will be run automatically before you commit. To run it manually:
 ```
 yarn lint:fix
 ```
+
+## Built With
+
+- [React](https://reactjs.org/) - A JS library for building user interfaces
+- [Material UI 4.X](https://material-ui.com/) - React components that implement Google's Material Design
+- [redux, immutable, reselect, final-form](https://redux.js.org/) - React ecosystem libraries
+
+![app diagram](https://user-images.githubusercontent.com/381895/129330828-c067425b-d20b-4f67-82c7-c0598deb453a.png)
 
 ## License
 

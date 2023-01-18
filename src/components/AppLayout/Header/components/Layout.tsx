@@ -8,7 +8,6 @@ import Provider from './Provider'
 import NetworkSelector from './NetworkSelector'
 import Spacer from 'src/components/Spacer'
 import Col from 'src/components/layout/Col'
-import Img from 'src/components/layout/Img'
 import Row from 'src/components/layout/Row'
 import { headerHeight, md, screenSm, sm } from 'src/theme/variables'
 import { useStateHandler } from 'src/logic/hooks/useStateHandler'
@@ -21,6 +20,9 @@ import { useSelector } from 'react-redux'
 import { OVERVIEW_EVENTS } from 'src/utils/events/overview'
 import Track from 'src/components/Track'
 import Notifications from 'src/components/AppLayout/Header/components/Notifications'
+import AnimatedLogo from 'src/components/AppLayout/Header/components/AnimatedLogo'
+import SafeTokenWidget, { getSafeTokenAddress } from './SafeTokenWidget'
+import { _getChainId } from 'src/config'
 
 const styles = () => ({
   root: {
@@ -41,16 +43,23 @@ const styles = () => ({
     zIndex: 1301,
   },
   logo: {
-    flexBasis: '140px',
-    flexShrink: '0',
-    flexGrow: '0',
-    maxWidth: '55px',
-    padding: sm,
-    marginTop: '4px',
     [`@media (min-width: ${screenSm}px)`]: {
       maxWidth: 'none',
       paddingLeft: md,
       paddingRight: md,
+    },
+    [`@media (max-width: ${screenSm}px)`]: {
+      maxWidth: '95px',
+      overflow: 'hidden',
+      '& img': {
+        width: '72px',
+        height: 'auto',
+      },
+    },
+    '& a': {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
     },
   },
   wallet: {
@@ -95,6 +104,8 @@ const Layout = ({ classes, providerDetails, providerInfo }) => {
   const { clickAway: clickAwayWallet, open: openWallet, toggle: toggleWallet } = useStateHandler()
   const { clickAway: clickAwayNetworks, open: openNetworks, toggle: toggleNetworks } = useStateHandler()
   const isWrongChain = useSelector(shouldSwitchWalletChain)
+  const chainId = _getChainId()
+  const chainHasSafeToken = Boolean(getSafeTokenAddress(chainId))
 
   return (
     <Row className={classes.summary}>
@@ -113,6 +124,13 @@ const Layout = ({ classes, providerDetails, providerInfo }) => {
           <WalletSwitch />
           <Divider />
         </div>
+      )}
+
+      {chainHasSafeToken && (
+        <>
+          <Divider />
+          <SafeTokenWidget />
+        </>
       )}
 
       <Divider />
